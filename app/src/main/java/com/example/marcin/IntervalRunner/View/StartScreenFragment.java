@@ -28,6 +28,7 @@ public class StartScreenFragment extends Fragment {
     public static StartScreenFragment mInstance = null;
     public TextView intervalTimer_tv;
     public ImageButton trainingStartStop_imgBtn;
+    public int iterations;
 
     public static StartScreenFragment newInstance(){
         StartScreenFragment startScreenFragment = new StartScreenFragment();
@@ -80,8 +81,16 @@ public class StartScreenFragment extends Fragment {
         centerCircle.setStrokeWidth(13);
         centerCircle.setCircleRadius(usableWidth / 3.5);
 
+        CircleView iterationCircle = new CircleView(getContext());
+        iterationCircle.setCenterX(usableWidth / 2);
+        iterationCircle.setCenterY((float) (usableHeight / 4.5));
+        iterationCircle.setPaintOptions(Paint.Style.STROKE, ResourcesCompat.getColor(getResources(),R.color.colorAccent ,null),0xFF);
+        iterationCircle.setStrokeWidth(13);
+        iterationCircle.setCircleRadius(usableWidth / 3.5 + 13);
+
         ConstraintLayout main_cl = (ConstraintLayout) getView();
         main_cl.addView(centerCircle);
+        main_cl.addView(iterationCircle);
     }
     public static synchronized StartScreenFragment getInstance(){
         if(mInstance == null)

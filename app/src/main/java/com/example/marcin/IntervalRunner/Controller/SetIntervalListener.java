@@ -28,8 +28,9 @@ public class SetIntervalListener implements View.OnClickListener {
     private TextView inputSeconds;
     private TextView inputIterations;
 
-    public SetIntervalListener(TextView inputSec){
+    public SetIntervalListener(TextView inputSec,TextView inputIter){
         inputSeconds = inputSec;
+        inputIterations = inputIter;
     }
     @Override
     public void onClick (View view){
@@ -39,21 +40,26 @@ public class SetIntervalListener implements View.OnClickListener {
             Toast.makeText(MainActivity.MainContext,"Type in some interval time (greater or equal 10)",Toast.LENGTH_SHORT).show();
             setToZero();
         }
-        else if(TimerCounter.isRunning)
-            Toast.makeText(MainActivity.MainContext,"Pause currently running interval",Toast.LENGTH_SHORT).show();
-        else if(Integer.parseInt(inputSecondsText) >= 5)
+        else if(TimerCounter.isRunning) {
+            Toast.makeText(MainActivity.MainContext, "Pause currently running interval", Toast.LENGTH_SHORT).show();
+        }
+        else if(Integer.parseInt(inputSecondsText) >= 5) {
             setup();
+        }
         else
             Toast.makeText(MainActivity.MainContext,"This interval is too short",Toast.LENGTH_SHORT).show();
     }
     private void setup(){
         Date time = new Date(Integer.parseInt(inputSeconds.getText().toString()) * 1000);
+        int iterationsCount = Integer.parseInt(inputIterations.getText().toString());
         SimpleDateFormat timeString = new SimpleDateFormat("m:ss");
+        StartScreenFragment startScreenFragment = StartScreenFragment.getInstance();
 
-        ImageButton startStopBtn = StartScreenFragment.getInstance().trainingStartStop_imgBtn;
-        TextView displayedTime = StartScreenFragment.getInstance().intervalTimer_tv;
+        ImageButton startStopBtn = startScreenFragment.trainingStartStop_imgBtn;
+        TextView displayedTime = startScreenFragment.intervalTimer_tv;
 
         displayedTime.setText(timeString.format(time));
+        startScreenFragment.iterations = iterationsCount;
         startStopBtn.setOnClickListener(new RunListener(startStopBtn,displayedTime));
     }
     private void setToZero(){
