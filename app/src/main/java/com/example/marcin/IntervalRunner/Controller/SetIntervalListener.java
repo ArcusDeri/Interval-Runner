@@ -42,6 +42,7 @@ public class SetIntervalListener implements View.OnClickListener {
         RunListener rListener = new RunListener(startStopBtn,displayedTime);
         startStopBtn.setOnClickListener(rListener);
         rListener.miliSecondsToCount = milisToGo;
+        rListener.initialTime = milisToGo;
         rListener.iterations = iterationsNumber;
         rListener.setOriginValue(milisToGo);
     }

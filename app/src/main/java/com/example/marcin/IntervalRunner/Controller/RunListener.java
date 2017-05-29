@@ -29,6 +29,7 @@ public class RunListener implements View.OnClickListener {
     private static RunListener RunListener;
 
     public int miliSecondsToCount;
+    public int initialTime;
     public int iterations = 1;
 
     public RunListener(ImageButton imgBtn,TextView intervalTv){
@@ -63,7 +64,7 @@ public class RunListener implements View.OnClickListener {
         }
     }
     public void countNextIteration(){
-        _timerCounter = new TimerCounter(miliSecondsToCount + 1000,iterations,1000,_intervalTextView);
+        _timerCounter = new TimerCounter(initialTime + 1000,iterations,1000,_intervalTextView);
         _timerCounter.startCounting();
     }
     public void setButtonIcon(){
