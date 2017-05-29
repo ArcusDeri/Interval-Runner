@@ -3,13 +3,11 @@ package com.example.marcin.IntervalRunner.Controller;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.marcin.IntervalRunner.Activities.MainActivity;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -21,89 +19,83 @@ import static com.example.marcin.IntervalRunner.R.drawable.play_button;
  */
 
 public class RunListener implements View.OnClickListener {
-    private ImageButton imageButton;
-    private boolean isClicked;
-    private TextView timeTv;
-    private TimerCounter counter;
-    private Date time;
-    private SimpleDateFormat timeString;
-    private int milisecondsToCount;
-    private int minutesFromView;
-    private int secondsFromView;
-    private float scale;
-    private int leftPaddingDP;
-    private int topPaddingDP;
-    private int rightPaddingDP;
-    private int bottomPaddingDP;
+    private float _scale;
+    private int _leftPaddingDP, _rightPaddingDP, _bottomPaddingDP, _topPaddingDP;
+    private boolean _isClicked = false;
+    private ImageButton _imageButton;
+    private TextView _intervalTextView;
+    private TimerCounter _timerCounter;
 
-    public RunListener(ImageButton button, TextView timeTv){
-        this.imageButton = button;
-        this.timeTv = timeTv;
-        this.isClicked = true;
+    private static RunListener RunListener;
 
-        this.minutesFromView = Integer.parseInt(timeTv.getText().toString().substring(0,1));
-        this.secondsFromView = Integer.parseInt(timeTv.getText().toString().substring(2,4));
-        Log.d("mrc", timeTv.getText().toString().substring(2,4));
-        this.milisecondsToCount = (minutesFromView * 60 + secondsFromView) * 1000;
+    public int miliSecondsToCount;
+    public int iterations = 1;
 
-        this.counter = new TimerCounter(timeTv,milisecondsToCount,1000);
-        this.counter.setCaller(this);
-        setOriginValue(milisecondsToCount);
-        scale  = MainActivity.MainContext.getResources().getDisplayMetrics().density;
-    }
-    public void setOriginValue(int timeLeft){
-        time = new Date(timeLeft);
-        timeString = new SimpleDateFormat("m:ss");
-
-        timeTv.setText(timeString.format(time));
+    public RunListener(ImageButton imgBtn,TextView intervalTv){
+        RunListener = this;
+        this._imageButton = imgBtn;
+        this._intervalTextView = intervalTv;
+        this._scale = MainActivity.MainContext.getResources().getDisplayMetrics().density;
     }
 
     @Override
     public void onClick (View view){
-        String displayedTime = timeTv.getText().toString();
-        minutesFromView = Integer.parseInt(displayedTime.substring(0,1));
-        secondsFromView = Integer.parseInt(displayedTime.substring(2,4));
-
-        if(timeTv.getText().toString().equals("0:00")){
-            Toast.makeText(MainActivity.MainContext,"Set some interval first :)",Toast.LENGTH_SHORT).show();
+        if(!_intervalTextView.getText().toString().equals("0:00")) {
+            _isClicked = !_isClicked;
+            setButtonIcon();
+            manageCounter();
         }
-
-        this.milisecondsToCount = (minutesFromView * 60 + secondsFromView) * 1000;
-
-        setOriginValue(counter.getMilisLeft());
-        if(counter.getCompletedStatus()){
-            setOriginValue(this.milisecondsToCount);
-            counter = new TimerCounter(timeTv,this.milisecondsToCount,1000);
-            counter.setCaller(this);
-            counter.startCounting();
-        }else if(isClicked)
-            counter.startCounting();
-            else{
-                counter.cancel();
-                counter = new TimerCounter(timeTv,counter.getMilisLeft(),1000);
-                counter.setCaller(this);
-                setOriginValue(counter.getMilisLeft());
+        else
+            Toast.makeText(MainActivity.MainContext,"Set interval first",Toast.LENGTH_SHORT).show();
+    }
+    public void manageCounter(){
+        if(_timerCounter != null){
+            if(_isClicked){
+                _timerCounter = new TimerCounter(miliSecondsToCount,iterations,1000,_intervalTextView);
+                _timerCounter.startCounting();
             }
-        setButtonIcon();
+            else {
+                _timerCounter.pause();
+            }
+        }else{
+            _timerCounter = new TimerCounter(miliSecondsToCount,iterations,1000,_intervalTextView);
+            _timerCounter.startCounting();
+        }
+    }
+    public void countNextIteration(){
+        _timerCounter = new TimerCounter(miliSecondsToCount + 1000,iterations,1000,_intervalTextView);
+        _timerCounter.startCounting();
     }
     public void setButtonIcon(){
-        if(isClicked){
-            leftPaddingDP = Math.round(20 * scale);
-            topPaddingDP = Math.round(10 * scale);
-            rightPaddingDP = Math.round(20 * scale);
-            bottomPaddingDP = topPaddingDP;
+        if(_isClicked){
+            _leftPaddingDP = Math.round(20 * _scale);
+            _topPaddingDP = Math.round(10 * _scale);
+            _rightPaddingDP = Math.round(20 * _scale);
+            _bottomPaddingDP = _topPaddingDP;
 
-            imageButton.setImageResource(pause_button);
-            imageButton.setPadding(leftPaddingDP,topPaddingDP,rightPaddingDP,bottomPaddingDP);
-        }else{
-            leftPaddingDP = Math.round(25 * scale);
-            topPaddingDP = Math.round(10 * scale);
-            rightPaddingDP = Math.round(20 * scale);
-            bottomPaddingDP = topPaddingDP;
-
-            imageButton.setImageResource(play_button);
-            imageButton.setPadding(leftPaddingDP,topPaddingDP,rightPaddingDP,bottomPaddingDP);
+            _imageButton.setImageResource(pause_button);
+            _imageButton.setPadding(_leftPaddingDP, _topPaddingDP, _rightPaddingDP, _bottomPaddingDP);
         }
-        isClicked = !isClicked;
+        else{
+            _leftPaddingDP = Math.round(25 * _scale);
+            _topPaddingDP = Math.round(10 * _scale);
+            _rightPaddingDP = Math.round(20 * _scale);
+            _bottomPaddingDP = _topPaddingDP;
+
+            _imageButton.setImageResource(play_button);
+            _imageButton.setPadding(_leftPaddingDP, _topPaddingDP, _rightPaddingDP, _bottomPaddingDP);
+        }
+    }
+
+    public void setOriginValue(int timeLeft){
+        SimpleDateFormat format = new SimpleDateFormat("m:ss");
+        Date time = new Date(timeLeft);
+        _intervalTextView.setText(format.format(time));
+    }
+    public void switchIsClicked(){
+        _isClicked = !_isClicked;
+    }
+    public static RunListener getInstance(){
+        return  RunListener;
     }
 }

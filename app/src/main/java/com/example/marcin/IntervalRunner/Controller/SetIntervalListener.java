@@ -1,12 +1,9 @@
 package com.example.marcin.IntervalRunner.Controller;
 
-import android.app.ActivityManager;
-import android.content.Intent;
-import android.text.Editable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,8 +13,6 @@ import com.example.marcin.IntervalRunner.View.StartScreenFragment;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static android.content.Context.INPUT_METHOD_SERVICE;
-
 
 /**
  * Created by Marcin on 16.04.2017.
@@ -25,51 +20,43 @@ import static android.content.Context.INPUT_METHOD_SERVICE;
 
 public class SetIntervalListener implements View.OnClickListener {
 
-    private TextView inputSeconds;
-    private TextView inputIterations;
+    private TextView _inputSeconds;
+    private TextView _inputIterations;
 
     public SetIntervalListener(TextView inputSec,TextView inputIter){
-        inputSeconds = inputSec;
-        inputIterations = inputIter;
+        _inputSeconds = inputSec;
+        _inputIterations = inputIter;
     }
     @Override
     public void onClick (View view){
-        String inputSecondsText = inputSeconds.getText().toString();
-
-        if(inputSecondsText.isEmpty()){
-            Toast.makeText(MainActivity.MainContext,"Type in some interval time (greater or equal 10)",Toast.LENGTH_SHORT).show();
-            setToZero();
-        }
-        else if(TimerCounter.isRunning) {
-            Toast.makeText(MainActivity.MainContext, "Pause currently running interval", Toast.LENGTH_SHORT).show();
-        }
-        else if(Integer.parseInt(inputSecondsText) >= 5) {
-            setup();
-        }
-        else
-            Toast.makeText(MainActivity.MainContext,"This interval is too short",Toast.LENGTH_SHORT).show();
+        checkIfCanSetInterval();
     }
-    private void setup(){
-        Date time = new Date(Integer.parseInt(inputSeconds.getText().toString()) * 1000);
-        int iterationsCount = Integer.parseInt(inputIterations.getText().toString());
-        SimpleDateFormat timeString = new SimpleDateFormat("m:ss");
+    private void setup(int milisToGo){
+        int iterationsNumber = Integer.parseInt(_inputIterations.getText().toString());
         StartScreenFragment startScreenFragment = StartScreenFragment.getInstance();
+
 
         ImageButton startStopBtn = startScreenFragment.trainingStartStop_imgBtn;
         TextView displayedTime = startScreenFragment.intervalTimer_tv;
 
-        displayedTime.setText(timeString.format(time));
-        startScreenFragment.iterations = iterationsCount;
-        startStopBtn.setOnClickListener(new RunListener(startStopBtn,displayedTime));
+        RunListener rListener = new RunListener(startStopBtn,displayedTime);
+        startStopBtn.setOnClickListener(rListener);
+        rListener.miliSecondsToCount = milisToGo;
+        rListener.iterations = iterationsNumber;
+        rListener.setOriginValue(milisToGo);
     }
-    private void setToZero(){
-        Date time = new Date(0);
-        SimpleDateFormat timeString = new SimpleDateFormat("m:ss");
 
-        ImageButton startStopBtn = StartScreenFragment.getInstance().trainingStartStop_imgBtn;
-        TextView displayedTime = StartScreenFragment.getInstance().intervalTimer_tv;
+    private void checkIfCanSetInterval(){
+        String inputSecondsText = _inputSeconds.getText().toString();
+        int inputTime = Integer.parseInt(inputSecondsText);
 
-        displayedTime.setText(timeString.format(time));
-        startStopBtn.setOnClickListener(new RunListener(startStopBtn,displayedTime));
+        if(TimerCounter.isRunning) {
+            Toast.makeText(MainActivity.MainContext, "Pause currently running interval", Toast.LENGTH_SHORT).show();
+        }
+        else if(inputTime < 5) {
+            Toast.makeText(MainActivity.MainContext,"This interval is too short",Toast.LENGTH_SHORT).show();
+        }
+        else
+            setup(inputTime * 1000);
     }
 }

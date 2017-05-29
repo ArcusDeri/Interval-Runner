@@ -12,65 +12,53 @@ import java.util.Date;
  * Created by Marcin on 17.04.2017.
  */
 
-public class TimerCounter {
-    public static boolean isRunning = false;
-    private AccurateCountDownTimer counter;
-    private RunListener caller;
-    private SimpleDateFormat timeString;
-    private boolean isCompleted;
-    private int miliTicks;
+public class TimerCounter extends AccurateCountDownTimer{
+    public static boolean isRunning,isCompleted;
+
+    private long milisToGo;
+    private int iterations;
     private StartScreenFragment startScreen;
-    private TextView textView;
 
-    public TimerCounter(final TextView textView,long inFuture,long interval){
-        this.textView = textView;
-        this.miliTicks = (int) inFuture;
-        this.isCompleted = false;
-        this.counter = new AccurateCountDownTimer(inFuture,interval) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                miliTicks = Math.round((float)millisUntilFinished/1000)*1000;
-                Date time = new Date(miliTicks + 1000);
-                timeString = new SimpleDateFormat("m:ss");
+    public TimerCounter(long millisInFuture,int iterations, long countDownInterval,final TextView textView){
+        super(millisInFuture, countDownInterval);
+        this.milisToGo = millisInFuture;
+        this.iterations = iterations;
+    }
 
-                textView.setText(timeString.format(time));
-                isRunning = true;
-                //Log.d("mrc","tick " + minutes + " " + seconds + " " + miliTicks);
-            }
-            @Override
-            public void onFinish() {
-                checkIfEndOfWorkout();
-            }
-        };
-    }
-    private void checkIfEndOfWorkout(){
-        if(startScreen.iterations > 0){
-            Log.d("mrc", "iteracje w trakcie");
-            startScreen.iterations -= 1;
-            textView.setText("0:00");
-            caller.setOriginValue(miliTicks); //?
-            this.counter.start();
-        }
-        else{
-            Log.d("mrc","koniec iteracji");
-            textView.setText("0:00");
-            isCompleted = true;
-            isRunning = false;
-            caller.setButtonIcon();
-        }
-    }
-    public void cancel(){
+    public void pause(){
         isRunning = false;
-        counter.cancel();
+        RunListener.getInstance().miliSecondsToCount =(int) milisToGo;
+        cancel();
     }
+
+    @Override
+    public void onTick(long millisUntilFinished) {
+        milisToGo = Math.round((float)millisUntilFinished/1000)*1000;
+        Date time = new Date(milisToGo);
+        SimpleDateFormat format = new SimpleDateFormat("m:ss");
+
+        startScreen.intervalTimer_tv.setText(format.format(time));
+    }
+
+    @Override
+    public void onFinish() {
+        startScreen.intervalTimer_tv.setText("0:00");
+        if(iterations > 1){
+            RunListener.getInstance().iterations--;
+            RunListener.getInstance().countNextIteration();
+        }else{
+            isRunning = false;
+            isCompleted = true;
+            RunListener.getInstance().switchIsClicked();
+            RunListener.getInstance().setButtonIcon();
+        }
+    }
+
     public void startCounting()
     {
         startScreen = StartScreenFragment.getInstance();
-        counter.start();
+        start();
     }
-    public void setCaller(RunListener runListener){
-        this.caller = runListener;
-    }
-    public int getMilisLeft(){return miliTicks;}
-    public boolean getCompletedStatus(){return isCompleted;};
+
+    public int getMilisLeft(){return (int)milisToGo;}
 }

@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 
 import com.example.marcin.IntervalRunner.Utils.MenuPagerAdapter;
 import com.example.marcin.IntervalRunner.R;
+import com.example.marcin.IntervalRunner.View.TrainingSettingsFragment;
 
 public class MainActivity extends FragmentActivity {
     public static Context MainContext;
@@ -33,7 +34,6 @@ public class MainActivity extends FragmentActivity {
         viewPager = (ViewPager) findViewById(R.id.pager);
         viewPager.setAdapter(menuPagerAdapter);
         viewPager.setCurrentItem(1);
-        //TrainingSettingsFragment settingsPage = (TrainingSettingsFragment) getFragmentManager().;
 
     }
 }

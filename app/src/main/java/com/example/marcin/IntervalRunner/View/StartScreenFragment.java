@@ -28,7 +28,6 @@ public class StartScreenFragment extends Fragment {
     public static StartScreenFragment mInstance = null;
     public TextView intervalTimer_tv;
     public ImageButton trainingStartStop_imgBtn;
-    public int iterations;
 
     public static StartScreenFragment newInstance(){
         StartScreenFragment startScreenFragment = new StartScreenFragment();
