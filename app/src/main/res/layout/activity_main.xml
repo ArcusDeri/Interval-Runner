@@ -8,36 +8,38 @@
         android:layout_height="match_parent"
         android:background="@color/colorPrimary"
         android:id="@+id/main_screen"
-        tools:context="com.example.marcin.IntervalRunner.Activities.MainActivity">
+        tools:context="com.example.marcin.IntervalRunner.Activities.MainActivity"
+        tools:layout_editor_absoluteY="25dp"
+        tools:layout_editor_absoluteX="0dp">
 
         <TextView
             android:id="@+id/timeView"
             android:layout_width="125dp"
             android:layout_height="62dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
             android:text="0:00"
             android:textAlignment="center"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginBottom="8dp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.17" />
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintVertical_bias="0.182" />
 
     <ImageButton
         android:id="@+id/runButton"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-
         android:adjustViewBounds="false"
         android:background="@drawable/circle_button"
         android:cropToPadding="false"
@@ -51,6 +53,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.924" />
+        app:layout_constraintTop_toBottomOf="@+id/timeView"
+        app:layout_constraintVertical_bias="0.677"
+        tools:layout_editor_absoluteY="353dp" />
     </android.support.constraint.ConstraintLayout>
