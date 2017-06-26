@@ -1,5 +1,6 @@
 package com.example.marcin.IntervalRunner.Controller;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -10,6 +11,7 @@ import com.example.marcin.IntervalRunner.Activities.MainActivity;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static android.util.Log.*;
 import static com.example.marcin.IntervalRunner.R.drawable.pause_button;
 import static com.example.marcin.IntervalRunner.R.drawable.play_button;
 
@@ -52,19 +54,28 @@ public class RunListener implements View.OnClickListener {
     public void manageCounter(){
         if(_timerCounter != null){
             if(_isClicked){
-                _timerCounter = new TimerCounter(highPaceSecondsToCount,iterations,1000,_intervalTextView);
+                if(iterations % 2 == 0)
+                    _timerCounter = new TimerCounter(lowPaceSecondsToCount,iterations,1000,_intervalTextView);
+                else
+                    _timerCounter = new TimerCounter(highPaceSecondsToCount,iterations,1000,_intervalTextView);
                 _timerCounter.startCounting();
             }
             else {
                 _timerCounter.pause();
             }
         }else{
-            _timerCounter = new TimerCounter(highPaceSecondsToCount,iterations,1000,_intervalTextView);
+            if(iterations % 2 == 0)
+                _timerCounter = new TimerCounter(lowPaceSecondsToCount,iterations,1000,_intervalTextView);
+            else
+                _timerCounter = new TimerCounter(highPaceSecondsToCount,iterations,1000,_intervalTextView);
             _timerCounter.startCounting();
         }
     }
     public void countNextIteration(){
-        _timerCounter = new TimerCounter(initialTime + 1000,iterations,1000,_intervalTextView);
+        if(iterations % 2 == 0)
+            _timerCounter = new TimerCounter(lowPaceSecondsToCount + 1000,iterations,1000,_intervalTextView);
+        else
+            _timerCounter = new TimerCounter(highPaceSecondsToCount + 1000,iterations,1000,_intervalTextView);
         _timerCounter.startCounting();
     }
     public void setButtonIcon(){

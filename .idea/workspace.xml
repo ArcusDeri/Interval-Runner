@@ -16,8 +16,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="518b13ca-f2e8-491f-9972-042a4fab0c72" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/Controller/DownLowPaceListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/Controller/UpLowPaceListener.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
@@ -29,10 +27,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/Controller/RunListener.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/Controller/RunListener.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/Controller/SetIntervalListener.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/Controller/SetIntervalListener.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/Controller/TimerCounter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/Controller/TimerCounter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/View/TrainingSettingsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/View/TrainingSettingsFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/right_page.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/right_page.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/Controller/DownSecondsListener.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/Controller/DownHighPaceListener.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/Controller/UpSecondsListener.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/Controller/UpHighPaceListener.java" />
     </list>
     <ignored path="HelloGoogle.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -77,8 +71,8 @@
       <file leaf-file-name="TrainingSettingsFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/View/TrainingSettingsFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="395">
-              <caret line="58" column="95" selection-start-line="58" selection-start-column="95" selection-end-line="58" selection-end-column="95" />
+            <state relative-caret-position="476">
+              <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -100,8 +94,8 @@
       <file leaf-file-name="TimerCounter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/Controller/TimerCounter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="446">
-              <caret line="45" column="51" selection-start-line="45" selection-start-column="51" selection-end-line="45" selection-end-column="51" />
+            <state relative-caret-position="157">
+              <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -110,18 +104,8 @@
       <file leaf-file-name="RunListener.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/Controller/RunListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SetIntervalListener.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/Controller/SetIntervalListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
-              <caret line="41" column="45" selection-start-line="41" selection-start-column="45" selection-end-line="41" selection-end-column="45" />
+            <state relative-caret-position="386">
+              <caret line="75" column="73" selection-start-line="75" selection-start-column="73" selection-end-line="75" selection-end-column="73" />
               <folding />
             </state>
           </provider>
@@ -2017,15 +2001,15 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/Activities/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/left_page.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/Utils/IntervalTimer.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/Controller/TimerCounter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/View/StartScreenFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/Controller/DownLowPaceListener.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/right_page.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/Controller/UpLowPaceListener.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/View/TrainingSettingsFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/Controller/RunListener.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/Controller/SetIntervalListener.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/Controller/TimerCounter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/Controller/RunListener.java" />
       </list>
     </option>
   </component>
@@ -2815,14 +2799,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/Controller/DownHighPaceListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/Controller/UpIterationsListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -2839,34 +2815,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/Controller/DownHighPaceListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/View/TrainingSettingsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="58" column="95" selection-start-line="58" selection-start-column="95" selection-end-line="58" selection-end-column="95" />
+        <state relative-caret-position="476">
+          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/Controller/TimerCounter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="45" column="51" selection-start-line="45" selection-start-column="51" selection-end-line="45" selection-end-column="51" />
+        <state relative-caret-position="157">
+          <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/Controller/SetIntervalListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="41" column="45" selection-start-line="41" selection-start-column="45" selection-end-line="41" selection-end-column="45" />
+        <state relative-caret-position="463">
+          <caret line="43" column="52" selection-start-line="43" selection-start-column="52" selection-end-line="43" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/marcin/IntervalRunner/Controller/RunListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
+        <state relative-caret-position="386">
+          <caret line="75" column="73" selection-start-line="75" selection-start-column="73" selection-end-line="75" selection-end-column="73" />
           <folding />
         </state>
       </provider>

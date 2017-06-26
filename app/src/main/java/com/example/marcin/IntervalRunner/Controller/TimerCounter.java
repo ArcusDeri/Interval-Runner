@@ -14,26 +14,26 @@ import java.util.Date;
 public class TimerCounter extends AccurateCountDownTimer{
     public static boolean isRunning,isCompleted;
 
-    private long milisToGo;
+    private long highSecondsToGo;
     private int iterations;
     private StartScreenFragment startScreen;
 
     public TimerCounter(long millisInFuture,int iterations, long countDownInterval,final TextView textView){
         super(millisInFuture, countDownInterval);
-        this.milisToGo = millisInFuture;
+        this.highSecondsToGo = millisInFuture;
         this.iterations = iterations;
     }
 
     public void pause(){
         isRunning = false;
-        RunListener.getInstance().highPaceSecondsToCount =(int) milisToGo;
+        RunListener.getInstance().highPaceSecondsToCount =(int) highSecondsToGo;
         cancel();
     }
 
     @Override
     public void onTick(long millisUntilFinished) {
-        milisToGo = Math.round((float)millisUntilFinished/1000)*1000;
-        Date time = new Date(milisToGo);
+        highSecondsToGo = Math.round((float)millisUntilFinished/1000)*1000;
+        Date time = new Date(highSecondsToGo);
         SimpleDateFormat format = new SimpleDateFormat("m:ss");
 
         startScreen.intervalTimer_tv.setText(format.format(time));
@@ -59,5 +59,5 @@ public class TimerCounter extends AccurateCountDownTimer{
         start();
     }
 
-    public int getMilisLeft(){return (int)milisToGo;}
+    public int getMilisLeft(){return (int) highSecondsToGo;}
 }

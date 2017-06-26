@@ -41,8 +41,8 @@ public class SetIntervalListener implements View.OnClickListener {
         rListener.highPaceSecondsToCount = highPaceSeconds;
         rListener.lowPaceSecondsToCount = lowPaceSeconds;
         rListener.initialTime = lowPaceSeconds;
-        rListener.iterations = iterationsNumber;
-        rListener.setOriginValue(highPaceSeconds);
+        rListener.iterations = iterationsNumber * 2;
+        rListener.setOriginValue(lowPaceSeconds);
     }
 
     private void checkIfCanSetInterval(){
