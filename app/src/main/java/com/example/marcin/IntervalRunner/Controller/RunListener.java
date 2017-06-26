@@ -1,6 +1,5 @@
 package com.example.marcin.IntervalRunner.Controller;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -28,7 +27,8 @@ public class RunListener implements View.OnClickListener {
 
     private static RunListener RunListener;
 
-    public int miliSecondsToCount;
+    public int highPaceSecondsToCount;
+    public int lowPaceSecondsToCount;
     public int initialTime;
     public int iterations = 1;
 
@@ -52,14 +52,14 @@ public class RunListener implements View.OnClickListener {
     public void manageCounter(){
         if(_timerCounter != null){
             if(_isClicked){
-                _timerCounter = new TimerCounter(miliSecondsToCount,iterations,1000,_intervalTextView);
+                _timerCounter = new TimerCounter(highPaceSecondsToCount,iterations,1000,_intervalTextView);
                 _timerCounter.startCounting();
             }
             else {
                 _timerCounter.pause();
             }
         }else{
-            _timerCounter = new TimerCounter(miliSecondsToCount,iterations,1000,_intervalTextView);
+            _timerCounter = new TimerCounter(highPaceSecondsToCount,iterations,1000,_intervalTextView);
             _timerCounter.startCounting();
         }
     }

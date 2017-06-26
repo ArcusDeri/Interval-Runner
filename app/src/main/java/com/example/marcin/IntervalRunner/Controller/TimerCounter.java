@@ -1,5 +1,4 @@
 package com.example.marcin.IntervalRunner.Controller;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.example.marcin.IntervalRunner.Utils.AccurateCountDownTimer;
@@ -27,7 +26,7 @@ public class TimerCounter extends AccurateCountDownTimer{
 
     public void pause(){
         isRunning = false;
-        RunListener.getInstance().miliSecondsToCount =(int) milisToGo;
+        RunListener.getInstance().highPaceSecondsToCount =(int) milisToGo;
         cancel();
     }
 

@@ -1,8 +1,5 @@
 package com.example.marcin.IntervalRunner.Controller;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -10,8 +7,6 @@ import android.widget.Toast;
 
 import com.example.marcin.IntervalRunner.Activities.MainActivity;
 import com.example.marcin.IntervalRunner.View.StartScreenFragment;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 
 /**
@@ -20,18 +15,20 @@ import java.util.Date;
 
 public class SetIntervalListener implements View.OnClickListener {
 
-    private TextView _inputSeconds;
+    private TextView _inputHighSeconds;
+    private TextView _inputLowSeconds;
     private TextView _inputIterations;
 
-    public SetIntervalListener(TextView inputSec,TextView inputIter){
-        _inputSeconds = inputSec;
+    public SetIntervalListener(TextView inputHigh,TextView inputLow, TextView inputIter){
+        _inputHighSeconds = inputHigh;
+        _inputLowSeconds = inputLow;
         _inputIterations = inputIter;
     }
     @Override
     public void onClick (View view){
         checkIfCanSetInterval();
     }
-    private void setup(int milisToGo){
+    private void setup(int highPaceSeconds, int lowPaceSeconds){
         int iterationsNumber = Integer.parseInt(_inputIterations.getText().toString());
         StartScreenFragment startScreenFragment = StartScreenFragment.getInstance();
 
@@ -41,23 +38,26 @@ public class SetIntervalListener implements View.OnClickListener {
 
         RunListener rListener = new RunListener(startStopBtn,displayedTime);
         startStopBtn.setOnClickListener(rListener);
-        rListener.miliSecondsToCount = milisToGo;
-        rListener.initialTime = milisToGo;
+        rListener.highPaceSecondsToCount = highPaceSeconds;
+        rListener.lowPaceSecondsToCount = lowPaceSeconds;
+        rListener.initialTime = lowPaceSeconds;
         rListener.iterations = iterationsNumber;
-        rListener.setOriginValue(milisToGo);
+        rListener.setOriginValue(highPaceSeconds);
     }
 
     private void checkIfCanSetInterval(){
-        String inputSecondsText = _inputSeconds.getText().toString();
-        int inputTime = Integer.parseInt(inputSecondsText);
+        String inputHighSecondsText = _inputHighSeconds.getText().toString();
+        String inputLowSecondsText = _inputLowSeconds.getText().toString();
+        int inputHighTime = Integer.parseInt(inputHighSecondsText);
+        int inputLowTime = Integer.parseInt(inputLowSecondsText);
 
         if(TimerCounter.isRunning) {
             Toast.makeText(MainActivity.MainContext, "Pause currently running interval", Toast.LENGTH_SHORT).show();
         }
-        else if(inputTime < 5) {
+        else if(inputHighTime < 5 || inputLowTime < 5) {
             Toast.makeText(MainActivity.MainContext,"This interval is too short",Toast.LENGTH_SHORT).show();
         }
         else
-            setup(inputTime * 1000);
+            setup(inputHighTime * 1000,inputLowTime * 1000);
     }
 }
