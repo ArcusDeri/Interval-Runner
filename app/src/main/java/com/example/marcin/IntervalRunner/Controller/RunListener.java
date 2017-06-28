@@ -22,6 +22,7 @@ import static com.example.marcin.IntervalRunner.R.drawable.play_button;
 public class RunListener implements View.OnClickListener {
     private float _scale;
     private int _leftPaddingDP, _rightPaddingDP, _bottomPaddingDP, _topPaddingDP;
+    private int currentIteration = 1;
     private boolean _isClicked = false;
     private ImageButton _imageButton;
     private TextView _intervalTextView;
@@ -33,6 +34,8 @@ public class RunListener implements View.OnClickListener {
     public int lowPaceSecondsToCount;
     public int initialTime;
     public int iterations = 1;
+    public int maxIterations;
+    public TextView _iterationsCount_tv;
 
     public RunListener(ImageButton imgBtn,TextView intervalTv){
         RunListener = this;
@@ -77,6 +80,7 @@ public class RunListener implements View.OnClickListener {
         else
             _timerCounter = new TimerCounter(highPaceSecondsToCount + 1000,iterations,1000,_intervalTextView);
         _timerCounter.startCounting();
+        _iterationsCount_tv.setText(++currentIteration + "/" + maxIterations);
     }
     public void setButtonIcon(){
         if(_isClicked){
@@ -103,6 +107,7 @@ public class RunListener implements View.OnClickListener {
         SimpleDateFormat format = new SimpleDateFormat("m:ss");
         Date time = new Date(timeLeft);
         _intervalTextView.setText(format.format(time));
+        _iterationsCount_tv.setText(currentIteration + "/" + iterations );
     }
     public void switchIsClicked(){
         _isClicked = !_isClicked;

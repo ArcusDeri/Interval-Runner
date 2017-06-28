@@ -32,16 +32,19 @@ public class SetIntervalListener implements View.OnClickListener {
         int iterationsNumber = Integer.parseInt(_inputIterations.getText().toString());
         StartScreenFragment startScreenFragment = StartScreenFragment.getInstance();
 
-
         ImageButton startStopBtn = startScreenFragment.trainingStartStop_imgBtn;
         TextView displayedTime = startScreenFragment.intervalTimer_tv;
+        TextView iterationsCount_tv = startScreenFragment.iterationsCount_tv;
 
         RunListener rListener = new RunListener(startStopBtn,displayedTime);
         startStopBtn.setOnClickListener(rListener);
+
+        rListener._iterationsCount_tv = iterationsCount_tv;
         rListener.highPaceSecondsToCount = highPaceSeconds;
         rListener.lowPaceSecondsToCount = lowPaceSeconds;
         rListener.initialTime = lowPaceSeconds;
         rListener.iterations = iterationsNumber * 2;
+        rListener.maxIterations = iterationsNumber * 2;
         rListener.setOriginValue(lowPaceSeconds);
     }
 
@@ -57,7 +60,9 @@ public class SetIntervalListener implements View.OnClickListener {
         else if(inputHighTime < 5 || inputLowTime < 5) {
             Toast.makeText(MainActivity.MainContext,"This interval is too short",Toast.LENGTH_SHORT).show();
         }
-        else
+        else{
             setup(inputHighTime * 1000,inputLowTime * 1000);
+            Toast.makeText(MainActivity.MainContext,"All set!",Toast.LENGTH_SHORT).show();
+        }
     }
 }

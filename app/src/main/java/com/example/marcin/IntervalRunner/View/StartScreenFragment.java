@@ -26,8 +26,10 @@ import com.example.marcin.IntervalRunner.R;
 
 public class StartScreenFragment extends Fragment {
     public static StartScreenFragment mInstance = null;
+
     public TextView intervalTimer_tv;
     public ImageButton trainingStartStop_imgBtn;
+    public TextView iterationsCount_tv;
 
     public static StartScreenFragment newInstance(){
         StartScreenFragment startScreenFragment = new StartScreenFragment();
@@ -46,6 +48,7 @@ public class StartScreenFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_main,container,false);
         intervalTimer_tv =(TextView) view.findViewById(R.id.timeView);
         trainingStartStop_imgBtn = (ImageButton) view.findViewById(R.id.runButton);
+        iterationsCount_tv = (TextView) view.findViewById(R.id.iterations_counter_tv);
 
         return view;
     }
