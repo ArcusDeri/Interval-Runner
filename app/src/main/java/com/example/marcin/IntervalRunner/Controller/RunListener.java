@@ -58,9 +58,9 @@ public class RunListener implements View.OnClickListener {
         if(_timerCounter != null){
             if(_isClicked){
                 if(iterations % 2 == 0)
-                    _timerCounter = new TimerCounter(lowPaceSecondsToCount,iterations,1000,_intervalTextView);
+                    _timerCounter = new TimerCounter(_timerCounter.getMilisLeft(),iterations,1000,_intervalTextView);
                 else
-                    _timerCounter = new TimerCounter(highPaceSecondsToCount,iterations,1000,_intervalTextView);
+                    _timerCounter = new TimerCounter(_timerCounter.getMilisLeft(),iterations,1000,_intervalTextView);
                 _timerCounter.startCounting();
             }
             else {
