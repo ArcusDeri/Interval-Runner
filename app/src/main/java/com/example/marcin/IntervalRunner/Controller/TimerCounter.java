@@ -1,6 +1,8 @@
 package com.example.marcin.IntervalRunner.Controller;
-import android.widget.TextView;
+import android.media.MediaPlayer;
 
+import com.example.marcin.IntervalRunner.Activities.MainActivity;
+import com.example.marcin.IntervalRunner.R;
 import com.example.marcin.IntervalRunner.Utils.AccurateCountDownTimer;
 import com.example.marcin.IntervalRunner.View.StartScreenFragment;
 
@@ -43,12 +45,16 @@ public class TimerCounter extends AccurateCountDownTimer{
         startScreen.intervalTimer_tv.setText("0:00");
         if(iterations > 1){
             RunListener.getInstance().iterations--;
+            MediaPlayer mediaPlayer = MediaPlayer.create(MainActivity.MainContext, R.raw.pace_change_sound);
+            mediaPlayer.start();
             RunListener.getInstance().countNextIteration();
         }else{
             isRunning = false;
             isCompleted = true;
             RunListener.getInstance().switchIsClicked();
             RunListener.getInstance().setButtonIcon();
+            MediaPlayer mediaPlayer = MediaPlayer.create(MainActivity.MainContext, R.raw.finish_training);
+            mediaPlayer.start();
             startScreen.paceText_tv.setText("");
         }
     }

@@ -97,7 +97,6 @@ public class RunListener implements View.OnClickListener {
             _topPaddingDP = Math.round(10 * _scale);
             _rightPaddingDP = Math.round(20 * _scale);
             _bottomPaddingDP = _topPaddingDP;
-
             _imageButton.setImageResource(pause_button);
             _imageButton.setPadding(_leftPaddingDP, _topPaddingDP, _rightPaddingDP, _bottomPaddingDP);
         }
