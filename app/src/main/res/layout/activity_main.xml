@@ -75,4 +75,20 @@
         app:layout_constraintTop_toBottomOf="@+id/timeView"
         app:layout_constraintVertical_bias="0.0" />
 
+    <TextView
+        android:id="@+id/pace_text_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/runButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iterations_counter_tv"
+        app:layout_constraintVertical_bias="0.659" />
+
 </android.support.constraint.ConstraintLayout>

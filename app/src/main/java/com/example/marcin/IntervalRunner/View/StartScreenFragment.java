@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.res.ResourcesCompat;
-import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +29,7 @@ public class StartScreenFragment extends Fragment {
     public TextView intervalTimer_tv;
     public ImageButton trainingStartStop_imgBtn;
     public TextView iterationsCount_tv;
+    public TextView paceText_tv;
 
     public static StartScreenFragment newInstance(){
         StartScreenFragment startScreenFragment = new StartScreenFragment();
@@ -49,6 +49,7 @@ public class StartScreenFragment extends Fragment {
         intervalTimer_tv =(TextView) view.findViewById(R.id.timeView);
         trainingStartStop_imgBtn = (ImageButton) view.findViewById(R.id.runButton);
         iterationsCount_tv = (TextView) view.findViewById(R.id.iterations_counter_tv);
+        paceText_tv = (TextView) view.findViewById(R.id.pace_text_tv);
 
         return view;
     }

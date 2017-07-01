@@ -18,7 +18,7 @@ public class TimerCounter extends AccurateCountDownTimer{
     private int iterations;
     private StartScreenFragment startScreen;
 
-    public TimerCounter(long millisInFuture,int iterations, long countDownInterval,final TextView textView){
+    public TimerCounter(long millisInFuture,int iterations, long countDownInterval ){
         super(millisInFuture, countDownInterval);
         this.secondsToGo = millisInFuture;
         this.iterations = iterations;
@@ -49,6 +49,7 @@ public class TimerCounter extends AccurateCountDownTimer{
             isCompleted = true;
             RunListener.getInstance().switchIsClicked();
             RunListener.getInstance().setButtonIcon();
+            startScreen.paceText_tv.setText("");
         }
     }
 
@@ -57,6 +58,5 @@ public class TimerCounter extends AccurateCountDownTimer{
         startScreen = StartScreenFragment.getInstance();
         start();
     }
-
     public int getMilisLeft(){return (int) secondsToGo;}
 }

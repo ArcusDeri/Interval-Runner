@@ -7,6 +7,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.marcin.IntervalRunner.Activities.MainActivity;
+import com.example.marcin.IntervalRunner.View.StartScreenFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -36,12 +37,14 @@ public class RunListener implements View.OnClickListener {
     public int iterations = 1;
     public int maxIterations;
     public TextView _iterationsCount_tv;
+    public TextView _paceText_tv;
 
     public RunListener(ImageButton imgBtn,TextView intervalTv){
         RunListener = this;
         this._imageButton = imgBtn;
         this._intervalTextView = intervalTv;
         this._scale = MainActivity.MainContext.getResources().getDisplayMetrics().density;
+        this._paceText_tv = StartScreenFragment.getInstance().paceText_tv;
     }
 
     @Override
@@ -58,27 +61,33 @@ public class RunListener implements View.OnClickListener {
         if(_timerCounter != null){
             if(_isClicked){
                 if(iterations % 2 == 0)
-                    _timerCounter = new TimerCounter(_timerCounter.getMilisLeft(),iterations,1000,_intervalTextView);
+                    _timerCounter = new TimerCounter(_timerCounter.getMilisLeft(),iterations,1000);
                 else
-                    _timerCounter = new TimerCounter(_timerCounter.getMilisLeft(),iterations,1000,_intervalTextView);
+                    _timerCounter = new TimerCounter(_timerCounter.getMilisLeft(),iterations,1000);
                 _timerCounter.startCounting();
             }
             else {
                 _timerCounter.pause();
             }
         }else{
-            if(iterations % 2 == 0)
-                _timerCounter = new TimerCounter(lowPaceSecondsToCount,iterations,1000,_intervalTextView);
+            if(iterations % 2 == 0) {
+                _timerCounter = new TimerCounter(lowPaceSecondsToCount, iterations, 1000);
+                _paceText_tv.setText("slow");
+            }
             else
-                _timerCounter = new TimerCounter(highPaceSecondsToCount,iterations,1000,_intervalTextView);
+                _timerCounter = new TimerCounter(highPaceSecondsToCount,iterations,1000);
             _timerCounter.startCounting();
         }
     }
     public void countNextIteration(){
-        if(iterations % 2 == 0)
-            _timerCounter = new TimerCounter(lowPaceSecondsToCount + 1000,iterations,1000,_intervalTextView);
-        else
-            _timerCounter = new TimerCounter(highPaceSecondsToCount + 1000,iterations,1000,_intervalTextView);
+        if(iterations % 2 == 0) {
+            _timerCounter = new TimerCounter(lowPaceSecondsToCount + 1000, iterations, 1000);
+            _paceText_tv.setText("slow");
+        }
+        else {
+            _timerCounter = new TimerCounter(highPaceSecondsToCount + 1000, iterations, 1000);
+            _paceText_tv.setText("fast");
+        }
         _timerCounter.startCounting();
         _iterationsCount_tv.setText(++currentIteration + "/" + maxIterations);
     }
